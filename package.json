@@ -1,17 +1,25 @@
 {
-  "name": "electron-react",
+  "name": "engineering-math-suite",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.2.1",
+    "@material-ui/icons": "^4.2.1",
+    "electron-is-dev": "^1.1.0",
+    "electron-reload": "^1.4.1",
+    "mathjs": "^6.0.3",
+    "mathjs-simple-integral": "^0.1.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "electron-dev": "concurrently \"SET BROWSER=none && yarn start\" \"wait-on http://localhost:3000 && electron .\""
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -27,5 +35,26 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "main": "public/main.js",
+  "devDependencies": {
+    "concurrently": "^4.1.1",
+    "electron": "^5.0.7",
+    "electron-builder": "^21.1.1",
+    "wait-on": "^3.3.0"
+  },
+  "build": {
+    "appId": "com.example.electron-cra",
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
+  },
+  "electron-pack": "build --em.main=build/main.js",
+  "preelectron-pack": "yarn build",
+  "author": "Adim Victor",
+  "homepage": "./"
 }
